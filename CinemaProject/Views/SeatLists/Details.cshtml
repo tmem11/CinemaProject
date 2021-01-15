@@ -1,0 +1,43 @@
+﻿@model CinemaProject.Models.SeatList
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SeatList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hall.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hall.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seatNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seatNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAvailable)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

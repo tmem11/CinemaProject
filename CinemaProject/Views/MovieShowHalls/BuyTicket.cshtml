@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CinemaProject.Models.SeatList>
+
+@{
+    ViewBag.Title = "BuyTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BuyTicket</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hall.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.seatNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAvailable)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.hall.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.seatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAvailable)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

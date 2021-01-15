@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CinemaProject.Models.Movie>
+
+@{
+    ViewBag.Title = "moviesonair";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    
+
+    .card{
+        border-spacing: 15px;
+    }
+</style>
+
+<h2>MOVIES IN CIENEMA </h2>
+<h4>order movies by: </h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("low price", "moviesonair", new { orderBy = "price_lower" })     |
+
+            @Html.ActionLink("high price", "moviesonair", new { orderBy = "price_higher" })
+        </th>
+        <th>
+            @Html.DropDownList("category", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ActionLink("sort by cat", "moviesonair",  new { orderBy =  ViewBag.category.SelectedValue}, null)
+
+        </th>
+
+    </tr>
+   
+        
+</table>
+    
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-3">
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/uploads/@Html.DisplayFor(modelItem => item.movieImage)" width="200" height="300" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.movieTitle)</h4>
+
+
+
+                        <p class="card-text">
+                            @{
+
+                                string x = item.description;
+
+                                if (x != null && x.Length > 150)
+                                {
+
+                                    x = x.Substring(0, 150);
+                                }
+
+                            }
+
+                            @Html.Raw(x)
+                        </p>
+                        <input type="button" class="btn btn-primary btn-lg" value="see movie shows" onclick="location.href='@Url.Action("inTheater", "MovieShowHalls",new { item.id })'" />
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        }
+    </div>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CinemaProject.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.movieTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.releaseDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movieImage)
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.movieTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.releaseDate)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+
+                <a href="#ex1" rel="modal:open">
+                    <img src="~/uploads/@Html.DisplayFor(modelItem => item.movieImage)" rel="modal:open" class="img-thumbnail" width="100" height="160" />
+                </a>
+                <div id="ex1" class="modal">
+                    <img src="~/uploads/@Html.DisplayFor(modelItem => item.movieImage)" class="img-thumbnail"  width="400" height="600" />
+
+
+                </div>
+
+                <!-- Link to open the modal -->
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit movie", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Show movie", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete movie", "Delete", new { id = item.id })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('a[ href="#ex1"]').click(function () {
+            $("#fade").modal({
+                fadeDuration: 1000,
+                fadeDelay: 1.75 // Will fade in 750ms after the overlay finishes.
+            });
+            return false;
+        });
+       
+
+    });
+</script>
+
